@@ -6,6 +6,7 @@ import { Dot } from "lucide-react";
 import { useMediaQuery } from "usehooks-ts";
 import rules from "@/data/rules.json";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Timeline } from "@/components/ui/timeline";
 
 function Landing() {
   const isNotSmall = useMediaQuery("(min-width: 640px)");
@@ -100,6 +101,20 @@ function Landing() {
           ))}
         </div>
       </section>
+
+      {/* EVENT TIMELINE */}
+      <section>
+        <div className="mx-12">
+          <h1 className="text-[#5046e6] text-5xl font-semibold my-12">
+            Event Timeline
+          </h1>
+
+          <p className="text-neutral-600 text-xl">
+            Here&apos;s how everything is going to unfold
+          </p>
+        </div>
+        <EventTimeline />
+      </section>
     </main>
   );
 }
@@ -168,6 +183,159 @@ const AboutSection = () => {
       </div>
     </section>
   );
+};
+
+const EventTimeline = () => {
+  const data = [
+    {
+      title: "20 - 23 January",
+      content: (
+        <div className="">
+          <h1 className="font-mono text-4xl uppercase font-bold">
+            Pre-registration
+          </h1>
+
+          <p className="text-neutral-400 text-xl">
+            Gear up for innovation! The team's pre-register preps start now to
+            ensure a smooth functioning of the event
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: "24 January - 4 February",
+      content: (
+        <div className="">
+          <h1 className="font-mono text-4xl uppercase font-bold">
+            Registration window
+          </h1>
+
+          <p className="text-neutral-400 text-xl">
+            This is the time to secure your spot in an exhilarating hackathon
+            where ideas come to life and creativity knows no bounds.
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: "5 - 12 February",
+      content: (
+        <div className="">
+          <h1 className="font-mono text-4xl uppercase font-bold">
+            Submission window
+          </h1>
+
+          <p className="text-neutral-400 text-xl">
+            This is the time to submit your round 1 projects.
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: "13 - 15 February",
+      content: (
+        <div className="">
+          <h1 className="font-mono text-4xl uppercase font-bold">
+            Evaluation Round 1 &#40;PPT&#41;
+          </h1>
+
+          <p className="text-neutral-400 text-xl">
+            Showcase your vision! Participate in the PPT evaluation round to
+            present your ideas and impress the judges with your innovative
+            solutions.
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: "16 February",
+      content: (
+        <div className="">
+          <h1 className="font-mono text-4xl uppercase font-bold">
+            Results Round 1 &#40;PPT&#41;
+          </h1>
+
+          <p className="text-neutral-400 text-xl"></p>
+        </div>
+      ),
+    },
+    {
+      title: "17 - 18 February",
+      content: (
+        <div className="">
+          <h1 className="font-mono text-4xl uppercase font-bold">
+            Preparation for round 2
+          </h1>
+
+          <p className="text-neutral-400 text-xl">
+            Prepare for Round 2! Sharpen your ideas and refine your skills to
+            deliver standout solutions that impress the judges.
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: "19 - 20 February",
+      content: (
+        <div className="">
+          <h1 className="font-mono text-4xl uppercase font-bold">
+            Submission for round 2
+          </h1>
+
+          <p className="text-neutral-400 text-xl">
+            Submit your solutions for Round 2! Showcase your creativity and
+            technical skills to advance to the final stage of the hackathon.
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: "20 - 21 February",
+      content: (
+        <div className="">
+          <h1 className="font-mono text-4xl uppercase font-bold">
+            Round 2 Evaluation
+          </h1>
+
+          <p className="text-neutral-400 text-xl">
+            Round 2 evaluations are underway! Judges will assess your
+            submissions on innovation, feasibility, and impact to select the
+            finalists.
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: "22 February",
+      content: (
+        <div className="">
+          <h1 className="font-mono text-4xl uppercase font-bold">
+            Round 2 results
+          </h1>
+
+          <p className="text-neutral-400 text-xl"></p>
+        </div>
+      ),
+    },
+    {
+      title: "2 March",
+      content: (
+        <div className="">
+          <h1 className="font-mono text-4xl uppercase font-bold">
+            Offline Hackathon
+          </h1>
+
+          <p className="text-neutral-400 text-xl">
+            Get ready to innovate on-site! Round 3 is the ultimate offline
+            hackathon where the brightest minds come together to create
+            groundbreaking solutions.
+          </p>
+        </div>
+      ),
+    },
+  ];
+
+  return <Timeline data={data} />;
 };
 
 export default Landing;
