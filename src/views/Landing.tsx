@@ -8,6 +8,8 @@ import rules from "@/data/rules.json";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Timeline } from "@/components/ui/timeline";
 import Footer from "@/components/Footer";
+import { cn } from "@/lib/utils";
+import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 
 function Landing() {
   const isNotSmall = useMediaQuery("(min-width: 640px)");
@@ -59,6 +61,19 @@ function Landing() {
                 <br />
                 -&gt; Stay tuned for further updates. <br />
               </p>
+            </div>
+          </BoxReveal>
+
+          <BoxReveal boxColor={"#5046e6"} duration={0.5}>
+            <div className="z-10 flex items-center justify-start mt-4">
+              <div
+                className={cn(
+                  "group rounded-full border border-neutral-300 bg-neutral-200 text-base transition-all ease-in hover:cursor-pointer hover:bg-neutral-300"
+                )}>
+                <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out text-neutral-500 hover:duration-300">
+                  <span>✨ Registration starts soon</span>
+                </AnimatedShinyText>
+              </div>
             </div>
           </BoxReveal>
 

@@ -39,8 +39,9 @@ const Footer = () => {
       </div>
 
       <div className="mt-8">
-        <p className="text-xl">&copy; 2025 Innovera. All rights reserved.</p>
-        <p className="text-neutral-200">Created by Tejas Nanoti.</p>
+        {/* <p className="text-xl">&copy; 2025 Innovera. All rights reserved.</p>
+        <p className="text-neutral-200">Created by Tejas Nanoti.</p> */}
+        <p className="text-neutral-200">Coming soon.</p>
       </div>
     </footer>
   );
