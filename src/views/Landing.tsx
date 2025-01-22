@@ -4,6 +4,8 @@ import { HyperText } from "@/components/ui/hyper-text";
 import { WarpBackground } from "@/components/ui/warp-background";
 import { Dot } from "lucide-react";
 import { useMediaQuery } from "usehooks-ts";
+import rules from "@/data/rules.json";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 
 function Landing() {
   const isNotSmall = useMediaQuery("(min-width: 640px)");
@@ -73,6 +75,31 @@ function Landing() {
       ) : (
         <AboutSection />
       )}
+
+      {/* RULES AND REGS */}
+      <section className="sm:mx-8">
+        <h1 className="text-[#5046e6] text-5xl text-center font-semibold my-12">
+          Rules & Regulations
+        </h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {rules.map((rule) => (
+            <div className="relative">
+              <div className="absolute inset-0 bg-[#5046e6] rounded-lg"></div>
+
+              <Card className="relative z-10 hover:translate-x-2 hover:-translate-y-2 transition-transform duration-300 hover:cursor-pointer h-full">
+                <CardHeader>
+                  <CardTitle className="text-[#5046e6] font-semibold">
+                    {rule.title}
+                  </CardTitle>
+                </CardHeader>
+                <div className="px-8 pb-8">
+                  <p className="text-neutral-600">{rule.description}</p>
+                </div>
+              </Card>
+            </div>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }
