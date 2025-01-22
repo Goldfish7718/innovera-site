@@ -7,6 +7,7 @@ import { useMediaQuery } from "usehooks-ts";
 import rules from "@/data/rules.json";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Timeline } from "@/components/ui/timeline";
+import Footer from "@/components/Footer";
 
 function Landing() {
   const isNotSmall = useMediaQuery("(min-width: 640px)");
@@ -22,100 +23,105 @@ function Landing() {
   };
 
   return (
-    <main className="w-fit h-fit mx-4">
-      {/* LANDING */}
-      <div className="h-[100dvh] w-fit flex flex-col justify-center mx-8 sm:mx-40">
-        <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-          <p className="text-[3.5rem] font-semibold">
-            Innovera<span className="text-[#5046e6]">.</span>
-            <HyperText duration={1} className="text-neutral-600">
-              Hack. Create. Innovate.
-            </HyperText>
-          </p>
-        </BoxReveal>
+    <>
+      <main className="w-fit h-fit mx-4">
+        {/* LANDING */}
+        <div className="h-[100dvh] w-fit flex flex-col justify-center mx-8 sm:mx-40">
+          <BoxReveal boxColor={"#5046e6"} duration={0.5}>
+            <p className="text-[3.5rem] font-semibold">
+              Innovera<span className="text-[#5046e6]">.</span>
+              <HyperText duration={1} className="text-neutral-600">
+                Hack. Create. Innovate.
+              </HyperText>
+            </p>
+          </BoxReveal>
 
-        <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-          <h2 className="mt-[.5rem] text-[1rem]">
-            Hackathon for <span className="text-[#5046e6]">the innovators</span>
-          </h2>
-        </BoxReveal>
+          <BoxReveal boxColor={"#5046e6"} duration={0.5}>
+            <h2 className="mt-[.5rem] text-[1rem]">
+              Hackathon for{" "}
+              <span className="text-[#5046e6]">the innovators</span>
+            </h2>
+          </BoxReveal>
 
-        <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-          <div className="mt-6 ml-4 sm:ml-0">
-            <p>
-              -&gt; Hackathon begins on
-              <span className="font-semibold text-[#5046e6]">
-                {" "}
-                2nd march
-              </span>{" "}
-              at
-              <span className="font-semibold text-[#5046e6]">
-                {" "}
-                KK Wagh Institute of Engineering, Education & Research
-              </span>
-              <br />
-              -&gt; Stay tuned for further updates. <br />
+          <BoxReveal boxColor={"#5046e6"} duration={0.5}>
+            <div className="mt-6 ml-4 sm:ml-0">
+              <p>
+                -&gt; Hackathon begins on
+                <span className="font-semibold text-[#5046e6]">
+                  {" "}
+                  2nd march
+                </span>{" "}
+                at
+                <span className="font-semibold text-[#5046e6]">
+                  {" "}
+                  KK Wagh Institute of Engineering, Education & Research
+                </span>
+                <br />
+                -&gt; Stay tuned for further updates. <br />
+              </p>
+            </div>
+          </BoxReveal>
+
+          <BoxReveal boxColor={"#5046e6"} duration={0.5}>
+            <Button
+              className="mt-[1.6rem] bg-[#5046e6]"
+              onClick={() => scrollToElement("about", "start")}>
+              Explore
+            </Button>
+          </BoxReveal>
+        </div>
+
+        {/* ABOUT */}
+        {isNotSmall ? (
+          <WarpBackground>
+            <AboutSection />
+          </WarpBackground>
+        ) : (
+          <AboutSection />
+        )}
+
+        {/* RULES AND REGS */}
+        <section className="sm:mx-8">
+          <h1 className="text-[#5046e6] text-5xl text-center font-semibold my-12">
+            Rules & Regulations
+          </h1>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {rules.map((rule) => (
+              <div className="relative">
+                <div className="absolute inset-0 bg-[#5046e6] rounded-lg"></div>
+
+                <Card className="relative z-10 hover:translate-x-2 hover:-translate-y-2 transition-transform duration-300 hover:cursor-pointer h-full">
+                  <CardHeader>
+                    <CardTitle className="text-[#5046e6] font-semibold">
+                      {rule.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <div className="px-8 pb-8">
+                    <p className="text-neutral-600">{rule.description}</p>
+                  </div>
+                </Card>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* EVENT TIMELINE */}
+        <section>
+          <div className="mx-12">
+            <h1 className="text-[#5046e6] text-5xl font-semibold my-12">
+              Event Timeline
+            </h1>
+
+            <p className="text-neutral-600 text-xl">
+              Here&apos;s how everything is going to unfold
             </p>
           </div>
-        </BoxReveal>
-
-        <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-          <Button
-            className="mt-[1.6rem] bg-[#5046e6]"
-            onClick={() => scrollToElement("about", "start")}>
-            Explore
-          </Button>
-        </BoxReveal>
-      </div>
-
-      {/* ABOUT */}
-      {isNotSmall ? (
-        <WarpBackground>
-          <AboutSection />
-        </WarpBackground>
-      ) : (
-        <AboutSection />
-      )}
-
-      {/* RULES AND REGS */}
-      <section className="sm:mx-8">
-        <h1 className="text-[#5046e6] text-5xl text-center font-semibold my-12">
-          Rules & Regulations
-        </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {rules.map((rule) => (
-            <div className="relative">
-              <div className="absolute inset-0 bg-[#5046e6] rounded-lg"></div>
-
-              <Card className="relative z-10 hover:translate-x-2 hover:-translate-y-2 transition-transform duration-300 hover:cursor-pointer h-full">
-                <CardHeader>
-                  <CardTitle className="text-[#5046e6] font-semibold">
-                    {rule.title}
-                  </CardTitle>
-                </CardHeader>
-                <div className="px-8 pb-8">
-                  <p className="text-neutral-600">{rule.description}</p>
-                </div>
-              </Card>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* EVENT TIMELINE */}
-      <section>
-        <div className="mx-12">
-          <h1 className="text-[#5046e6] text-5xl font-semibold my-12">
-            Event Timeline
-          </h1>
-
-          <p className="text-neutral-600 text-xl">
-            Here&apos;s how everything is going to unfold
-          </p>
-        </div>
-        <EventTimeline />
-      </section>
-    </main>
+          <EventTimeline />
+        </section>
+      </main>
+      {/* FOOTER */}
+      <Footer />
+    </>
   );
 }
 
