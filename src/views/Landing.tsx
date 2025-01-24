@@ -11,9 +11,19 @@ import Footer from "@/components/Footer";
 import { cn } from "@/lib/utils";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 import timeline from "@/data/timeline.json";
+import { AuroraText } from "@/components/ui/aurora-text";
+import { FlickeringGrid } from "@/components/ui/flickering-grid";
 
 function Landing() {
   const isNotSmall = useMediaQuery("(min-width: 640px)");
+  const colors = [
+    "#FF0000",
+    "#0000FF",
+    "#00FF00",
+    "#CCCC00",
+    "#00CCCC",
+    "#FF00FF",
+  ];
 
   const scrollToElement = (
     id: string,
@@ -98,17 +108,21 @@ function Landing() {
 
         {/* RULES AND REGS */}
         <section className="sm:mx-8">
-          <h1 className="text-[#5046e6] text-5xl text-center font-semibold my-12">
-            Rules & Regulations
+          <h1 className="text-neutral-700 text-5xl text-center font-semibold my-12">
+            <AuroraText>Rules & Regulations</AuroraText>
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {rules.map((rule) => (
+            {rules.map((rule, index) => (
               <div className="relative">
-                <div className="absolute inset-0 bg-[#5046e6] rounded-lg"></div>
+                <div
+                  className="absolute inset-0 rounded-lg"
+                  style={{ backgroundColor: colors[index] }}></div>
 
                 <Card className="relative z-10 hover:translate-x-2 hover:-translate-y-2 transition-transform duration-300 hover:cursor-pointer h-full">
                   <CardHeader>
-                    <CardTitle className="text-[#5046e6] font-semibold">
+                    <CardTitle
+                      className="font-semibold"
+                      style={{ color: colors[index] }}>
                       {rule.title}
                     </CardTitle>
                   </CardHeader>
@@ -124,9 +138,9 @@ function Landing() {
         {/* EVENT TIMELINE */}
         <section>
           <div className="mx-12">
-            <h1 className="text-[#5046e6] text-5xl font-semibold my-12">
+            <AuroraText className="text-5xl font-semibold my-12">
               Event Timeline
-            </h1>
+            </AuroraText>
 
             <p className="text-neutral-600 text-xl">
               Here&apos;s how everything is going to unfold
@@ -208,17 +222,76 @@ const AboutSection = () => {
 };
 
 const EventTimeline = () => {
-  const data = timeline.map((timelineItem) => ({
+  const colors = [
+    "#FF0000",
+    "#0000FF",
+    "#00FF00",
+    "#CCCC00",
+    "#00CCCC",
+    "#FF00FF",
+    "#FF0000",
+    "#0000FF",
+    "#00FF00",
+    "#CCCC00",
+  ];
+
+  const lightenedColors = [
+    "#FFCCCC", // Very Light red
+    "#CCCCFF", // Very Light blue
+    "#CCFFCC", // Very Light green
+    "#FFFFCC", // Very Light yellow
+    "#CCFFFF", // Very Light cyan
+    "#FFCCFF", // Very Light magenta
+    "#FFCCCC", // Very Light red (duplicate)
+    "#CCCCFF", // Very Light blue (duplicate)
+    "#CCFFCC", // Very Light green (duplicate)
+    "#FFFFCC", // Very Light yellow (duplicate)
+  ];
+
+  const darkenedColors = [
+    "#990000", // Darker red
+    "#000099", // Darker blue
+    "#009900", // Darker green
+    "#999900", // Darker yellow
+    "#009999", // Darker cyan
+    "#990099", // Darker magenta
+    "#990000", // Darker red (duplicate)
+    "#000099", // Darker blue (duplicate)
+    "#009900", // Darker green (duplicate)
+    "#999900", // Darker yellow (duplicate)
+  ];
+
+  const data = timeline.map((timelineItem, index) => ({
     title: timelineItem.timelineDate,
     content: (
-      <div className="">
-        <h1 className="font-mono text-4xl uppercase font-bold">
-          {timelineItem.timelineTitle}
-        </h1>
+      <div
+        className="relative overflow-hidden p-8 rounded-xl border"
+        style={{ borderColor: darkenedColors[index] }}>
+        <FlickeringGrid
+          className="absolute inset-0 z-0 size-full"
+          squareSize={8}
+          gridGap={6}
+          color={colors[index]}
+          maxOpacity={0.5}
+          flickerChance={0.1}
+          height={800}
+          width={800}
+        />
+        <div className="relative">
+          <div className="absolute inset-0 bg-white z-0"></div>
+          <div
+            style={{
+              backgroundColor: lightenedColors[index],
+              color: darkenedColors[index],
+            }}
+            className="relative p-4 rounded-xl z-10">
+            <h1 className="font-mono text-4xl uppercase font-bold">
+              {timelineItem.timelineTitle}
+            </h1>
 
-        <p className="text-neutral-400 text-xl">
-          {timelineItem.timelineDescription}
-        </p>
+            <p className="text-xl">{timelineItem.timelineDescription}</p>
+          </div>
+        </div>
       </div>
     ),
   }));
